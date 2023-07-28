@@ -1,0 +1,10 @@
+.movie-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+mat-card {
+  align-items: center;
+  max-width: 300px;
+}
