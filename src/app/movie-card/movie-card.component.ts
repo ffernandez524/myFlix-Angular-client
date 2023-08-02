@@ -17,11 +17,13 @@ export class MovieCardComponent {
     public dialog: MatDialog
   ) { }
 
+  // On load, get user data from local storage
   ngOnInit(): void {
     this.getMovies();
     this.user = JSON.parse(localStorage.getItem('user') || '{}');
   }
 
+  // Get list of movies from API
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -29,6 +31,7 @@ export class MovieCardComponent {
     });
   }
 
+  // Add movie to user's favorite list
   addFavorite(movieId: string): void {
     this.fetchApiData.addFavorite(movieId).subscribe((resp: any) => {
       this.user = resp;
@@ -36,6 +39,7 @@ export class MovieCardComponent {
     });
   }
 
+  // Delete movie from user's favorite list
   deleteFavorite(movieId: string): void {
     this.fetchApiData.deleteFavorite(movieId).subscribe((resp: any) => {
       this.user = resp;
@@ -43,6 +47,7 @@ export class MovieCardComponent {
     });
   }
 
+  // Open modal with genre description
   genreDialog(movie: any): void {
     this.dialog.open(MovieDialogComponent, {
       data: {
@@ -52,6 +57,7 @@ export class MovieCardComponent {
     })
   }
 
+  // Open modal with director description
   directorDialog(movie: any): void {
     this.dialog.open(MovieDialogComponent, {
       data: {
@@ -61,6 +67,7 @@ export class MovieCardComponent {
     })
   }
 
+  // Open modal with movie description
   synopsisDialog(movie: any): void {
     this.dialog.open(MovieDialogComponent, {
       data: {

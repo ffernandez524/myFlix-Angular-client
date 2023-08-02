@@ -85,6 +85,7 @@ export class FetchApiDataService {
     );
   }
 
+  // Delete favorite from user's account
   public deleteFavorite(movieId: any): Observable<any> {
     const token = localStorage.getItem('token');
     const user = JSON.parse(localStorage.getItem('user') || '{}');
@@ -97,6 +98,7 @@ export class FetchApiDataService {
       );
   }
 
+  // Error handler for fetch services
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
     console.error('Some error occurred:', error.error.message);

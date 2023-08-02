@@ -27,7 +27,7 @@ export class ProfileUpdateFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // This is the function responsible for sending the form inputs to the backend
+  // Update user profile based on form data
   updateUser(): void {
     this.fetchApiData.updateUser(this.userData).subscribe((result) => {
       // Logic for a successful user registration goes here! (To be implemented)

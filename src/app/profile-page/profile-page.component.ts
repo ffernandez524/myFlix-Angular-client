@@ -17,7 +17,7 @@ export class ProfilePageComponent {
   constructor(
     public fetchApiData: FetchApiDataService,
     public dialog: MatDialog,
-    public snackBar: MatSnackBar,
+    public snackBar: MatSnackBar, // Popup notifications
     private router: Router
   ) { }
 
@@ -26,12 +26,14 @@ export class ProfilePageComponent {
     this.getMovies();
   }
 
+  // Opens a dialog with a form for updating user profile: profile-update-form
   updateDialog(): void {
     this.dialog.open(ProfileUpdateFormComponent, {
       width: '280px'
     });
   }
 
+  // Delete the user's account
   deleteUser(): void {
     if (confirm('Are you sure you want to delete your profile?')) {
       this.router.navigate(['welcome']).then(() => {
@@ -43,6 +45,7 @@ export class ProfilePageComponent {
     }
   }
 
+  // Get movie data and return *only* the user's favorites
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.favMovies = resp.filter((m: { _id: any }) => this.user.Favorites.indexOf(m._id) >= 0)
